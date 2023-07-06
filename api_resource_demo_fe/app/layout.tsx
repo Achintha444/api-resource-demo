@@ -1,22 +1,19 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import '../styles/globals.css';
 
-const inter = Inter({ subsets: ['latin'] })
+import MainGrid from '@/utils/common/mainGrid';
 
 export const metadata = {
   title: 'Issue Viewer',
   description: 'Demo application to demo API resources capabilities of Asgardeo',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-            {children}
+      <body>
+            <MainGrid>
+                { children }
+            </MainGrid>
         </body>
     </html>
   )
