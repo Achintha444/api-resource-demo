@@ -1,4 +1,7 @@
+"use client";
+
 import { Box, Button, Grid, Stack, Typography } from '@/utils/theme/muiLib';
+import { signIn, signOut } from "next-auth/react";
 
 export default function Home() {
     return (
@@ -11,7 +14,13 @@ export default function Home() {
                                 <b>Item Management Dashboard</b>
                             </Typography>
                         </Box>
-                        <Button variant='contained' size='large' >
+                        <Button variant='contained' size='large' onClick={() => { 
+                            try {
+                                signIn("apiResourceDemo") 
+                            } catch (error) {
+                                console.log(error)
+                            }
+                            }} >
                             Sign in
                         </Button>
                     </Stack>

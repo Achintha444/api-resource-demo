@@ -1,8 +1,12 @@
-import { Box, Card, CardContent, Grid, Stack, Typography } from '@/utils/theme/muiLib';
+import NavBar from '@/utils/common/navbar/navBar';
+import Title from '@/utils/common/title';
+import { Box, Card, CardContent, Container, Grid, Stack, Typography } from '@/utils/theme/muiLib';
 
 export default function Home() {
     return (
-        <Grid className='sub-item' container>
+        <Container className='sub-item'>
+            <NavBar />
+            <Title title='View Issues' />
             <Card className='issue-card'>
                 <CardContent className='issue-card-content'>
                     <Stack justifyContent="space-between"  className='issue-card-content'>
@@ -22,6 +26,6 @@ export default function Home() {
                     </Stack>
                 </CardContent>
             </Card>
-        </Grid>
+        </Container>
     )
 }
