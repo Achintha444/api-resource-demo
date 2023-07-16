@@ -1,8 +1,9 @@
-import { NavBarItem } from '@/utils/common/models/navBar';
-import { Button, Icon } from '@/utils/theme/muiLib';
-import { navBarItems } from '../navBarItems';
 import { Utils } from '@/utils/common/functions/utils';
+import { NavBarItem } from '@/utils/common/models/navBar';
 import { icons } from '@/utils/theme/icons';
+import { Button, SvgIconTypeMap } from '@/utils/theme/muiLib';
+import { navBarItems } from '../navBarItems';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 
 export interface NavBarItemsProps {
@@ -15,7 +16,7 @@ export default function NavBarItems(props: NavBarItemsProps): React.ReactNode {
 
     return (
         navBarItems.map((navBarItem: NavBarItem) => {
-            const Icon = icons[navBarItem.icon];
+            const Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> = icons[navBarItem.icon];
             return Utils.hasRequiredScopes(allowedScopes, navBarItem.requiredScopes) &&
             (
                 <>

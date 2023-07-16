@@ -5,6 +5,7 @@ export const navBarItems: NavBarItem[] = [
     {
         key: 'getting_started',
         name: 'Getting Started',
+        description: 'This is the getting started page',
         icon: 'Home',
         requiredScopes: [],
         path: '/getting_started'
@@ -12,6 +13,7 @@ export const navBarItems: NavBarItem[] = [
     {
         key: 'view_issues',
         name: 'View Issues',
+        description: 'View all the issues',
         icon: 'InsertDriveFile',
         requiredScopes: FeatureConfig.features.issue.view,
         path: '/view_issues'
@@ -19,6 +21,7 @@ export const navBarItems: NavBarItem[] = [
     {
         key: 'create_issue',
         name: 'Create Issue',
+        description: 'Create a new issue',
         icon: 'NoteAdd',
         requiredScopes: FeatureConfig.features.issue.view,
         path: '/create_issue'
