@@ -7,7 +7,9 @@ export const appTheme = createTheme({
             main: '#F37321',
             contrastText: '#FFFFFF'
         },
-        secondary: pink,
+        secondary: {
+            main: '#F2F2F2',
+        },
         text: {
             primary: '#242424',
             secondary: '#667080',
@@ -24,6 +26,12 @@ export const appTheme = createTheme({
             defaultProps: {
                 disableElevation: true
             }
-        }
+        },
+        MuiSnackbar: {
+            defaultProps: {
+                anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
+                autoHideDuration: 3000
+            }
+        },	
     }
 });

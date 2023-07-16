@@ -12,6 +12,14 @@
             "profile",
             "internal_login"
         ]
+    },
+    "Features": {
+        "Issues": {
+            "scopes": {
+                "create": ["issues:create"],
+                "view": ["issues:view"]
+            }
+        }
     }
 }
         

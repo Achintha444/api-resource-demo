@@ -1,12 +1,14 @@
-import NavBar from '@/utils/common/components/navbar/navBar';
-import Title from '@/utils/common/components/title';
-import { Box, Card, CardContent, Container, Grid, Stack, Typography } from '@/utils/theme/muiLib';
+import { Box, Card, CardContent, Grid, Stack, Typography } from '@/utils/theme/muiLib';
 
-export default function Home() {
+interface IssueCardProps {
+    issueTitle: string;
+    issueDescription: string;
+    issueId: string;
+}
+
+export default function IssueCard(props: IssueCardProps) {
     return (
-        <Container className='sub-item'>
-            <NavBar />
-            <Title title='View Issues' />
+        <Grid className='sub-item' container>
             <Card className='issue-card'>
                 <CardContent className='issue-card-content'>
                     <Stack justifyContent="space-between"  className='issue-card-content'>
@@ -26,6 +28,6 @@ export default function Home() {
                     </Stack>
                 </CardContent>
             </Card>
-        </Container>
+        </Grid>
     )
 }

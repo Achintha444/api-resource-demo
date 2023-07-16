@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@/utils/theme/muiLib';
 import '../styles/globals.css';
 
-import MainGrid from '@/utils/common/mainGrid';
+import MainGrid from '@/utils/common/components/mainGrid';
 import { appTheme } from '@/utils/theme/theme';
 import Theme from '@/utils/theme/themeProvider';
 

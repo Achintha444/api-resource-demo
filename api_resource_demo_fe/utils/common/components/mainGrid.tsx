@@ -1,6 +1,6 @@
-import '../../styles/common.css';
+import '../../../styles/common.css';
 
-import { Grid } from '../theme/muiLib';
+import { Grid } from '../../theme/muiLib';
 
 export default function MainGrid(prop: any) {
 

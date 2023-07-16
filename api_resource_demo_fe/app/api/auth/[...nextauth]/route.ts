@@ -1,6 +1,6 @@
+import { FeatureConfig } from '@/feature_config/featureConfig';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
-import config from '../../../../config.json';
 
 /**
  * 
@@ -26,10 +26,6 @@ const asgardeoProvider = (req: NextApiRequest, res: NextApiResponse) => NextAuth
             return token;
         },
         async session({ session, token }) {
-
-            console.log('session', session);
-            console.log('token', token);
-
             return session;
         }
 
@@ -50,11 +46,11 @@ const asgardeoProvider = (req: NextApiRequest, res: NextApiResponse) => NextAuth
         {
             authorization: {
                 params: {
-                    scope: config.ApplicationConfig.APIScopes.join(' ')
+                    scope: FeatureConfig.getScopes().join(' ')
                 }
             },
-            clientId: config.ApplicationConfig.ClientId,
-            clientSecret: config.ApplicationConfig.ClientSecret,
+            clientId: FeatureConfig.getClientId(),
+            clientSecret: FeatureConfig.getClientSecret(),
             id: 'apiResourceDemo',
             name: 'apiResourceDemo',
             profile(profile) {
@@ -65,11 +61,11 @@ const asgardeoProvider = (req: NextApiRequest, res: NextApiResponse) => NextAuth
             },
             type: 'oauth',
             checks: ["pkce"],
-            userinfo: `${config.AuthorizationConfig.BaseOrganizationUrl}/oauth2/userinfo`,
-            wellKnown: `${config.AuthorizationConfig.BaseOrganizationUrl}/oauth2/token/.well-known/openid-configuration`
+            userinfo: `${FeatureConfig.getBaseOrganizationUrl()}/oauth2/userinfo`,
+            wellKnown: `${FeatureConfig.getBaseOrganizationUrl()}/oauth2/token/.well-known/openid-configuration`
         }
     ],
     secret: process.env.SECRET
 });
 
-export { asgardeoProvider as GET, asgardeoProvider as POST }; 
+export { asgardeoProvider as GET, asgardeoProvider as POST };

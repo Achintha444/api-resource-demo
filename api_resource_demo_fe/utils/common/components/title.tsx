@@ -1,4 +1,4 @@
-import '../../styles/common.css';
+import '../../../styles/common.css';
 
 import { Container, Stack, Typography } from '@/utils/theme/muiLib';
 
