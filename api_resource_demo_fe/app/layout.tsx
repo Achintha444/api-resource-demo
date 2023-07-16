@@ -1,8 +1,7 @@
-import { ThemeProvider } from '@/utils/theme/muiLib';
+import AuthProvider from '@/utils/auth/authProvider';
 import '../styles/globals.css';
 
 import MainGrid from '@/utils/common/components/mainGrid';
-import { appTheme } from '@/utils/theme/theme';
 import Theme from '@/utils/theme/themeProvider';
 
 export const metadata = {
@@ -13,13 +12,15 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <Theme>
-                <body>
-                    <MainGrid>
-                        {children}
-                    </MainGrid>
-                </body>
-            </Theme>
+            <AuthProvider>
+                <Theme>
+                    <body>
+                        <MainGrid>
+                            {children}
+                        </MainGrid>
+                    </body>
+                </Theme>
+            </AuthProvider>
         </html>
     )
 }

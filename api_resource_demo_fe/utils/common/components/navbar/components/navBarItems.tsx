@@ -18,8 +18,7 @@ export default function NavBarItems(props: NavBarItemsProps): React.ReactNode {
         navBarItems.map((navBarItem: NavBarItem) => {
             const Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> = icons[navBarItem.icon];
             return Utils.hasRequiredScopes(allowedScopes, navBarItem.requiredScopes) &&
-            (
-                <>
+                (
                     <Button
                         key={navBarItem.key}
                         color='secondary'
@@ -28,8 +27,7 @@ export default function NavBarItems(props: NavBarItemsProps): React.ReactNode {
                     >
                         {navBarItem.name}
                     </Button>
-                </>
-            )
+                )
         }
         )
     );
