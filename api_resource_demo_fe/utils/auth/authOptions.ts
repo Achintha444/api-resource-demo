@@ -7,23 +7,25 @@ import { NextAuthOptions } from 'next-auth';
 export const asgardeoProviderOptions: NextAuthOptions = {
 
     callbacks: {
-
-        async jwt({ token, account, profile }) {
+        async jwt({ token, account }) {
 
             if (account) {
-                token.accessToken = account.access_token;
-                token.idToken = account.id_token;
-                token.scope = account.scope;
-                token.user = profile;
+                token.access_token = account?.access_token;
+                token.id_token = account?.id_token;
+                token.scope = account?.scope;
             }
 
             return token;
         },
-        async redirect({ baseUrl }) {
+        async session({ session, token, user }) {
+                
+            session.user = user;
+            session.accessToken = token.access_token;
+            session.idToken = token.id_token;
+            session.scopes = token.scope?.split(' ');
             
-            return `${baseUrl}/getting_started`;
-        },
-
+            return session;
+        }
     },
     cookies: {
         pkceCodeVerifier: {

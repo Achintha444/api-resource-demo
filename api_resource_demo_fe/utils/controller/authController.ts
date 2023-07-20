@@ -5,7 +5,7 @@ export class AuthController {
     private constructor() {};
 
     public static signIn = async (): Promise<void> => {
-        signIn("apiResourceDemo") 
+        signIn("apiResourceDemo", { callbackUrl: `/getting_started` }) 
     }
 
     public static signOut = async (): Promise<void> => {

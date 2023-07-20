@@ -1,19 +1,14 @@
 'use client';
 
-import { AppBar, Avatar, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Tooltip, Typography } from '@/utils/theme/muiLib';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { AppBar, Container, Stack, Toolbar, Typography } from '@/utils/theme/muiLib';
+import { useSelector } from 'react-redux';
 import NavBarItems from './components/navBarItems';
 import ProfileItems from './components/profileItems';
 
-const settings = ['Logout'];
-
-export default function NavBar(): React.ReactNode {
-
-    //const allowedScopes = useSelector((state: RootState) => state.authReducer.allowedScopes);
-
-    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+export default function NavBar(): JSX.Element {
+    
+    const allowedScopes = useSelector((state: RootState) => state.authReducer.allowedScopes);
 
     return (
         <AppBar position='static' elevation={0}>
@@ -28,7 +23,7 @@ export default function NavBar(): React.ReactNode {
                     <Container maxWidth='xl'>
                         <Stack direction='row' justifyContent='space-between'>
                             <Stack direction='row' spacing={2}>
-                                <NavBarItems allowedScopes={[]} />
+                                <NavBarItems allowedScopes={allowedScopes as string[]} />
                             </Stack>
                             <Stack direction='row'>
                                 <ProfileItems />

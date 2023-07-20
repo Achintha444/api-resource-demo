@@ -1,15 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 
 type AuthState = {
-    token: string;
-    session: string;
-    allowedScopes: string[];
+    allowedScopes: string[] | undefined;
 };
 
 const initialState: AuthState = {
-    token: "",
-    session: "",
-    allowedScopes: []
+    allowedScopes: undefined
 };
 
 export const auth = createSlice({
@@ -17,8 +15,6 @@ export const auth = createSlice({
     initialState: initialState,
     reducers: {
         signInDataSave: (state, action: PayloadAction<AuthState>) => {
-            state.token = action.payload.token;
-            state.session = action.payload.session;
             state.allowedScopes = action.payload.allowedScopes;
         },
         signOutDataCleat: (state) => {

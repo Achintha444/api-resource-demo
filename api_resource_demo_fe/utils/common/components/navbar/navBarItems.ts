@@ -23,7 +23,7 @@ export const navBarItems: NavBarItem[] = [
         name: 'Create Issue',
         description: 'Create a new issue',
         icon: 'NoteAdd',
-        requiredScopes: FeatureConfig.features.issue.view,
+        requiredScopes: FeatureConfig.features.issue.create,
         path: '/create_issue'
     }
 ];

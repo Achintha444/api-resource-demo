@@ -1,27 +1,40 @@
+'use client';
+
+import { signInDataSave } from '@/redux/features/auth';
+import { AppDispatch, RootState } from '@/redux/store';
+import LoadingScreen from '@/utils/common/components/loading';
 import NavBar from '@/utils/common/components/navbar/navBar';
 import { navBarItems } from '@/utils/common/components/navbar/navBarItems';
 import Title from '@/utils/common/components/title';
 import { NavBarItem } from '@/utils/common/models/navBar';
-import { Container, Grid } from '@/utils/theme/muiLib';
 import { icons } from '@/utils/theme/icons';
-import { Session, getServerSession } from 'next-auth';
-import { notFound } from 'next/navigation'
-import { asgardeoProviderOptions } from '@/utils/auth/authOptions';
+import { Container, Grid } from '@/utils/theme/muiLib';
+import { useSession } from 'next-auth/react';
+import { notFound } from 'next/navigation';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import NavBarItemCard from './components/navBarItemCard';
 
-export async function getSession(): Promise<Session | null> {
-    const session = await getServerSession(asgardeoProviderOptions);
-    console.log("session", session);
-    return session;
-}
+export default function Home() {
 
-export default async function Home() {
+    const dispatch = useDispatch<AppDispatch>();
 
-    const session = await getSession();
+    const session = useSession();
+    const allowedScopes = useSelector((state: RootState) => state.authReducer.allowedScopes);
 
-    // Redirect to not found page if session is not available
-    if (!session) {
-        notFound();
+    useEffect(() => {
+        if (session.status === 'authenticated' && !allowedScopes) {
+            dispatch(signInDataSave({ allowedScopes: session.data.scopes }));
+        }
+    }, [ session, allowedScopes, dispatch ]);
+
+    switch (session.status) {
+        case 'authenticated':
+            break;
+        case 'loading':
+            return <LoadingScreen />;
+        case 'unauthenticated':
+            notFound();
     }
 
     return (
@@ -35,6 +48,8 @@ export default async function Home() {
                         return item.key !== 'getting_started' && (
                             <Grid key={item.key} item xs={6}>
                                 <NavBarItemCard
+                                    allowedScopes={session.data?.scopes as string[]}
+                                    requiredScopes={item.requiredScopes}
                                     title={item.name}
                                     description={item.description}
                                     path={item.path}

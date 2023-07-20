@@ -1,10 +1,13 @@
+import { Utils } from '@/utils/common/functions/utils';
 import { ButtonBase, Card, CardContent, Container, Stack, SvgIconTypeMap, Typography } from '@/utils/theme/muiLib';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 interface NavBarItemProps {
     title: string;
     description: string;
-    path: string
+    path: string;
+    requiredScopes: string[];
+    allowedScopes: string[];
     Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 }
 
@@ -12,9 +15,15 @@ export default function NavBarItemCard(props: NavBarItemProps) {
 
     const { title, description, path, Icon } = props;
 
+    const allowed = Utils.hasRequiredScopes(props.allowedScopes, props.requiredScopes);
+
     return (
-        <ButtonBase className='issue-card' href={path}>
-            <Card className='issue-card' >
+        <ButtonBase 
+            className={!allowed ? 'nav-bar-items-disabled issue-card' : `issue-card`} 
+            disabled={ !allowed }
+            href={path
+        }>
+            <Card className='issue-card'>
                 <CardContent className='issue-card-content'>
                     <Stack
                         justifyContent="center"
