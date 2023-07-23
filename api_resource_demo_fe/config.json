@@ -4,6 +4,7 @@
     },
     "ApplicationConfig": {
         "HostedUrl": "http://localhost:3000",
+        "BackendUrl": "http://localhost:3001",
         "ClientId": "sF__Cm9gXun2ZLDdW7qdDgP5Z_sa",
         "ClientSecret": "0VyiPYH0PJcfeDa6_nIVYC86G7fDetk2waSBuiJPYgsa",
         "APIScopes": [

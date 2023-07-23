@@ -8,21 +8,22 @@ dependencies-toml-version = "2"
 distribution-version = "2201.6.0"
 
 [[package]]
-org = "achintha"
-name = "greeter"
+org = "api_resource_demo"
+name = "api_resource_demo_be"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "http"},
+	{org = "ballerina", name = "io"},
 	{org = "ballerina", name = "jwt"},
 	{org = "ballerina", name = "lang.value"},
 	{org = "ballerina", name = "regex"},
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
-	{org = "achintha", packageName = "greeter", moduleName = "greeter"},
-	{org = "achintha", packageName = "greeter", moduleName = "greeter.issue"},
-	{org = "achintha", packageName = "greeter", moduleName = "greeter.types"},
-	{org = "achintha", packageName = "greeter", moduleName = "greeter.util"}
+	{org = "api_resource_demo", packageName = "api_resource_demo_be", moduleName = "api_resource_demo_be"},
+	{org = "api_resource_demo", packageName = "api_resource_demo_be", moduleName = "api_resource_demo_be.issue"},
+	{org = "api_resource_demo", packageName = "api_resource_demo_be", moduleName = "api_resource_demo_be.types"},
+	{org = "api_resource_demo", packageName = "api_resource_demo_be", moduleName = "api_resource_demo_be.util"}
 ]
 
 [[package]]
@@ -114,6 +115,9 @@ version = "1.4.1"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"},
 	{org = "ballerina", name = "lang.value"}
+]
+modules = [
+	{org = "ballerina", packageName = "io", moduleName = "io"}
 ]
 
 [[package]]

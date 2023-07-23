@@ -54,6 +54,10 @@ a {
     height: 20vh;
 }
 
+.issue-card-grid {
+    width: 100%;
+}
+
 .issue-card-content {
     height: 100%;
     width: 100%

@@ -1,6 +1,7 @@
 import ballerina/http;
 import ballerina/jwt;
-import greeter.util;
+import ballerina/io;
+import api_resource_demo_be.util;
 
 jwt:ValidatorConfig validatorConfig = {
     issuer: util:getIssuer(),
@@ -25,9 +26,13 @@ service class AuthInterceptor {
             return <http:Unauthorized> {
                 body: "Missing or invalid Authorization header."
             } ;
-        } 
+        }
+
+        io:println(authHeader);
         string token = authHeader.substring(7);
         jwt:Payload|error result = jwt:validate(token, validatorConfig);
+
+        io:println(result);
 
         if result is error {
             return <http:Unauthorized> {
@@ -37,6 +42,8 @@ service class AuthInterceptor {
 
         string userId = result.get("sub").toString();
         string scopes = result.get("scope").toString();
+
+        io:println(scopes);
 
         ctx.set("scopes", scopes);
         ctx.set("userId", userId);

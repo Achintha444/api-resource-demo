@@ -1,21 +1,25 @@
+'use client';
+
 import { Utils } from '@/utils/common/functions/utils';
 import { ButtonBase, Card, CardContent, Container, Stack, SvgIconTypeMap, Typography } from '@/utils/theme/muiLib';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { useSession } from 'next-auth/react';
 
 interface NavBarItemProps {
     title: string;
     description: string;
     path: string;
     requiredScopes: string[];
-    allowedScopes: string[];
     Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 }
 
 export default function NavBarItemCard(props: NavBarItemProps) {
 
-    const { title, description, path, Icon } = props;
+    const { title, description, path, requiredScopes, Icon } = props;
 
-    const allowed = Utils.hasRequiredScopes(props.allowedScopes, props.requiredScopes);
+    const session = useSession();
+
+    const allowed = Utils.hasRequiredScopes(session.data?.scopes as string[], requiredScopes);
 
     return (
         <ButtonBase 

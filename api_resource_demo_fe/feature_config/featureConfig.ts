@@ -13,7 +13,16 @@ export class FeatureConfig {
 
     public static getClientSecret = (): string => config.ApplicationConfig.ClientSecret;
 
-    public static getScopes = (): string[] => config.ApplicationConfig.APIScopes;
+    public static getScopes = (): string[] => {
+
+        const apiScopes: string[] = config.ApplicationConfig.APIScopes;
+        const issuesViewScopes: string[] = config.Features.Issues.scopes.view;
+        const issuesCreateScopes: string[] = config.Features.Issues.scopes.create;
+
+        return [...apiScopes, ...issuesViewScopes, ...issuesCreateScopes];
+    }
+
+    public static getBackendUrl = (): string => config.ApplicationConfig.BackendUrl;
 
     public static features: Feature = {
         issue: config.Features.Issues.scopes
