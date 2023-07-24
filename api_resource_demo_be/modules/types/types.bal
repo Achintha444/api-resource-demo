@@ -8,3 +8,8 @@ public type Issue record {
     string name;
     string description;
 };
+
+public type RecieveIssue record {
+    string name;
+    string description;
+};

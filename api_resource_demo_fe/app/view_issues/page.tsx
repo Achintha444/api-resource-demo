@@ -18,12 +18,8 @@ async function getData() {
                 Authorization: `Bearer ${session?.accessToken}`
             }
         })
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
 
-    // Recommendation: handle errors
     if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
     }
 
@@ -41,7 +37,7 @@ export default async function Home() {
                 <Title title='View Issues' />
                 <Grid container justifyContent='flex-start' alignItems='center' direction='column' spacing={5}>
                     {
-                        issueList?.map((issue) =>
+                        issueList?.reverse().map((issue) =>
                             <IssueCard
                                 key={issue.id}
                                 issueId={issue.id}

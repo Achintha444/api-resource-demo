@@ -1,4 +1,6 @@
 import ballerina/http;
+import ballerina/uuid;
+import ballerina/io;
 import api_resource_demo_be.util;
 import api_resource_demo_be.types;
 import api_resource_demo_be.issue;
@@ -19,7 +21,7 @@ service / on api {
 
     resource function get issues(http:RequestContext ctx) returns types:Issue[]|error {
 
-        boolean isAuthorized =  util:authorize(ctx, util:getIssueScopes().get("view"));
+        boolean isAuthorized = util:authorize(ctx, util:getIssueScopes().get("view"));
 
         if !isAuthorized {
             return error("User is not authorized to view issues");
@@ -32,25 +34,31 @@ service / on api {
         }
     }
 
-    // resource function post issues(http:RequestContext ctx, @http:Payload Name payload) 
-    //     returns types:Issue|http:Unauthorized|http:InternalServerError {
+    resource function post issues(http:RequestContext ctx, @http:Payload types:RecieveIssue payload)
+        returns types:Issue|error {
 
-    //     _ = check util:authorize(ctx, util:getIssueScopes().get("create"));
-    //     string|http:Unauthorized userId = getUserId(ctx);
-    //     if userId is http:Unauthorized {
-    //         return userId;
-    //     }
+        boolean isAuthorized = util:authorize(ctx, util:getIssueScopes().get("create"));
 
-    //     string uuid = uuid:createType4AsString();
+        if !isAuthorized {
+            io:println("error");
 
-    //     types:Issue issue= {
-    //         id: uuid,
-    //         name: payload.name,
-    //         description: payload.description
-    //     };
+            return error("User is not authorized to view issues");
+        } else {
+            string uuid = uuid:createType4AsString();
 
-    //     issue:issuesTable.add(issue);
-        
-    //     return issue;
-    // }
+            io:println("Issue created with ID: " + uuid);
+
+            types:Issue issue = {
+                id: uuid,
+                name: payload.name,
+                description: payload.description
+            };
+
+            io:println("Issue created with ID: " + uuid);
+
+            issue:issuesTable.add(issue);
+
+            return issue;
+        }
+    }
 }
