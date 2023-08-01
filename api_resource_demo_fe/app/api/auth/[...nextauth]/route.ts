@@ -7,8 +7,7 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
  * @param req - request body
  * @param res - response body
  * 
- * @returns IS provider that will handle the sign in process. Used in `orgSignin()`
- * [Use this method to signin].
+ * @returns IS provider that will handle the sign in process.
  */
 const asgardeoProvider = (req: NextApiRequest, res: NextApiResponse): NextAuthOptions => 
     NextAuth(req, res, asgardeoProviderOptions);
