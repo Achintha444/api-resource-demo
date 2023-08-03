@@ -1,12 +1,12 @@
 {
     "AuthorizationConfig": {
-        "BaseOrganizationUrl": "https://api.asgardeo.io/t/achintha"
+        "BaseOrganizationUrl": "https://api.asgardeo.io/t/<tenant-name>"
     },
     "ApplicationConfig": {
         "HostedUrl": "http://localhost:3000",
         "BackendUrl": "http://localhost:3001",
-        "ClientId": "N7ovRTOTE_zX0C2q0MIyax2v0PYa",
-        "ClientSecret": "X9Ojv9jIDDoGHwx6ZsPSNLPQQhrcxjbp6eMiUa4NZ1wa",
+        "ClientId": "<client-id>",
+        "ClientSecret": "<client-secret>",
         "APIScopes": [
             "openid",
             "email",

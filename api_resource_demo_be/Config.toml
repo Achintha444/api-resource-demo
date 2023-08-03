@@ -1,7 +1,7 @@
 [api_resource_demo_be.util]
-issuer = "https://api.asgardeo.io/t/achintha/oauth2/token"
-audience = "N7ovRTOTE_zX0C2q0MIyax2v0PYa"
-jwksUrl = "https://api.asgardeo.io/t/achintha/oauth2/jwks"
+issuer = "https://dev.api.asgardeo.io/t/<tenant-name>/oauth2/token"
+audience = "<client-id>"
+jwksUrl = "https://dev.api.asgardeo.io/t/<tenant-name>/oauth2/jwks"
 port = 3001
 
 [api_resource_demo_be.util.issueScopes]
